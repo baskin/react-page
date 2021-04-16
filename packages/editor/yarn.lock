@@ -106,15 +106,15 @@ ajv@^7.1.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+classnames@^2.0.0, classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
+
 classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
-
-classnames@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
-  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 color-name@^1.0.0:
   version "1.1.4"
@@ -561,10 +561,30 @@ tslib@^2.1.0:
     tslib "^1.10.0"
     uniforms "^3.2.0"
 
+uniforms-semantic@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/uniforms-semantic/-/uniforms-semantic-3.3.0.tgz#eb37df2e1b26aee91ebc36f8cd1f7ddcf8ec277c"
+  integrity sha512-9JbTEdkN3ZPNjjiw1xk40qRFiwb9KpLGAX1ukUS+QLsA4zShh17OrQVKMPQrDo/e+Pcel/vNOm3cI70Yyu8SsA==
+  dependencies:
+    classnames "^2.0.0"
+    invariant "^2.0.0"
+    lodash "^4.0.0"
+    tslib "^1.10.0"
+    uniforms "^3.3.0"
+
 "uniforms@^2.6.0 || ^3.0.0", uniforms@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/uniforms/-/uniforms-3.2.0.tgz#e2ebf077768b40d7785789cc61840fe85fdfac05"
   integrity sha512-pG2XcelaSjIPno96GqIxHMQsHFwCKYx4ap7wxjI4XrTEIgUNBl/bAxuSSL2YNTNwhObbeObx+DWRczzZy6MW4w==
+  dependencies:
+    invariant "^2.0.0"
+    lodash "^4.0.0"
+    tslib "^1.10.0"
+
+uniforms@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/uniforms/-/uniforms-3.3.0.tgz#551ea13eab436c66e2018458ca49dfa51fc38f74"
+  integrity sha512-MM1yqy+orXKiqVguRKykEi0Yc/O2zUC+Q/RfZ0trg/Zma6cE7d0S3JLcV4obJbUXGRUHyirvhe98PhCF2nFgCw==
   dependencies:
     invariant "^2.0.0"
     lodash "^4.0.0"

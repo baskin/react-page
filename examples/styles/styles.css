@@ -1,6 +1,7 @@
 
 @import './typography.css';
 @import './elements.css';
+@import '~semantic-ui-css/semantic.css';
 
 body {
   margin: 0px;

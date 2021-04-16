@@ -1,8 +1,5 @@
-import type { Theme } from '@material-ui/core';
-import { Tab, Tabs } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
-import React, { useState } from 'react';
-import { useMeasure } from 'react-use';
+import React from 'react';
+import { Tab } from 'semantic-ui-react';
 import { AutoformControls } from '../../../../ui';
 import type {
   CellPluginComponentProps,
@@ -10,28 +7,10 @@ import type {
   ControlsDefList,
 } from '../../../types';
 
-const StyledTab = withStyles(() => ({
-  wrapper: {
-    alignItems: 'flex-start',
-  },
-}))(Tab);
-
-const StyledTabs = withStyles((theme: Theme) => ({
-  root: {
-    marginTop: -12,
-    marginBottom: -12,
-    marginLeft: -24,
-    alignItems: 'flex-start',
-    backgroundColor: theme.palette.background.default,
-  },
-}))(Tabs);
 const ControlsList: React.FC<{
   controls: ControlsDefList<unknown>;
   componentProps: CellPluginComponentProps<unknown>;
 }> = React.memo(({ controls, componentProps }) => {
-  const [tab, setTab] = useState(0);
-
-  const activeControls = controls[tab]?.controls;
   return (
     <div
       style={{
@@ -39,28 +18,16 @@ const ControlsList: React.FC<{
         flexDirection: 'row',
       }}
     >
-      <StyledTabs
-        value={tab}
-        onChange={(e, v) => setTab(v)}
-        orientation="vertical"
-        variant="scrollable"
+      <Tab menu={{ fluid: false, vertical: true, tabular: false }}
+        panes={controls.map(t => ({ 
+            key: t.title,
+            menuItem: t.title,
+            render: () => <Tab.Pane>
+                <Controls controls={t.controls} componentProps={componentProps} />
+            </Tab.Pane> })
+        )}
       >
-        {controls.map((t, index) => (
-          <StyledTab label={t.title} key={index} />
-        ))}
-      </StyledTabs>
-
-      {activeControls ? (
-        <div
-          style={{
-            flex: 1,
-            marginLeft: 24,
-            display: 'flex',
-          }}
-        >
-          <Controls controls={activeControls} componentProps={componentProps} />
-        </div>
-      ) : null}
+      </Tab>
     </div>
   );
 });
@@ -80,7 +47,7 @@ const Controls: React.FC<{
   } else if (controls?.type === 'autoform') {
     pluginControls = <AutoformControls {...componentProps} {...controls} />;
   }
-  return <div style={{ overflow: 'auto', flex: 1 }}>{pluginControls}</div>;
+  return <div style={{ overflow: 'visible', flex: 1 }}>{pluginControls}</div>;
 });
 
 const PluginControls: React.FC<{

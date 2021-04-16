@@ -11,11 +11,11 @@ import type {
 import makeUniformsSchema from './makeUniformsSchema';
 
 export const AutoForm = lazyLoad(() =>
-  import('uniforms-material').then((c) => c.AutoForm)
+  import('uniforms-semantic').then((c) => c.AutoForm)
 );
 export const AutoFields = lazyLoad(() =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  import('uniforms-material').then((c) => c.AutoFields as any)
+  import('uniforms-semantic').then((c) => c.AutoFields as any)
 ) as React.FC<{
   element?: React.ReactNode;
   fields?: string[];
