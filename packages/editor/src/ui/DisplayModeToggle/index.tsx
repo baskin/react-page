@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 import { useUiTranslator } from '../../core/components/hooks';
 import ToggleEdit from './ToggleEdit/index';
 import ToggleInsert from './ToggleInsert/index';
@@ -65,19 +66,11 @@ export const DisplayModeToggle: React.SFC<{
         ...getStickyNessstyle(stickyNess),
       }}
     >
-      <div
-        ref={stickyNess.stickyElRef}
-        style={{
-          padding: 16,
-          position: 'relative',
-
-          flexFlow: 'column wrap',
-          direction: 'rtl',
-
-          display: 'flex',
-        }}
-      >
-        {actions.map(({ action }, index) => (
+        <div ref={stickyNess.stickyElRef}>
+      <Button.Group vertical 
+        style={{ margin: '1rem' }}
+        buttons={
+        actions.map(({ action }, index) => (
           <div
             key={index}
             className="react-page-controls-mode-toggle-control"
@@ -88,8 +81,8 @@ export const DisplayModeToggle: React.SFC<{
             {action}
             <div className="react-page-controls-mode-toggle-clearfix" />
           </div>
-        ))}
-      </div>
+        ))} />
+        </div>
     </div>
   );
 };

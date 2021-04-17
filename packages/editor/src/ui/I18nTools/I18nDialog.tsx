@@ -1,91 +1,36 @@
-import { Button, DialogContent, Table } from '@material-ui/core';
-import Translate from '@material-ui/icons/Translate';
-
-import React, { useCallback } from 'react';
+import React from 'react';
+import { Table } from 'semantic-ui-react';
 import {
-  useCellDataI18nRaw,
-  useLang,
-  useOptions,
-  useSetLang,
-  useUiTranslator,
-  useUpdateCellData,
+    useCellDataI18nRaw,
+    useLang,
+    useOptions
 } from '../../core/components/hooks';
 import DraftSwitch from '../DraftSwitch';
-import SelectLang from './SelectLang';
 
-const I18nDialog = ({
-  nodeId,
-  onClose,
-}: {
-  nodeId: string;
-  onClose: () => void;
-}) => {
-  const currentLang = useLang();
-  const options = useOptions();
-  const { t } = useUiTranslator();
-  const setLang = useSetLang();
-  const dataI18n = useCellDataI18nRaw(nodeId);
+const I18nDialog = ({ nodeId } : { nodeId: string }) => {
+    const currentLang = useLang();
+    const options = useOptions();
+    const dataI18n = useCellDataI18nRaw(nodeId);
 
-  const updateCellData = useUpdateCellData(nodeId);
-  const reset = useCallback(
-    (lang: string) => {
-      updateCellData(null, {
-        lang,
-      });
-    },
-    [updateCellData]
-  );
-  const defaultLangLabel = options.languages?.[0]?.label;
-  return (
-    <DialogContent>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Translate style={{ marginRight: 'auto' }} /> <SelectLang />
-      </div>
-      <hr />
-      <Table>
-        <tbody>
-          {options.languages.map((l, index) => {
-            const data = dataI18n?.[l.lang];
-            const isCurrent = currentLang === l.lang;
-            const hasData = Boolean(data);
+    const tableData = options.languages;
+    const renderBodyRow = ({ lang, label }, i) => {
+        const data = dataI18n?.[lang];
+        const isCurrent = currentLang === lang;
+        const hasData = Boolean(data);
 
-            return (
-              <tr key={l.lang}>
-                <th
-                  style={{
-                    textAlign: 'left',
-                    textDecoration: isCurrent ? 'underline' : undefined,
-                  }}
-                >
-                  <Button onClick={() => setLang(l.lang)}>
-                    {l.label} {index === 0 ? t('(default)') : null}
-                  </Button>
-                </th>
-
-                <td>
-                  <DraftSwitch nodeId={nodeId} lang={l.lang} />
-                </td>
-
-                <td>{hasData ? '✔️' : ' '}</td>
-                <td>
-                  {hasData && index !== 0 ? (
-                    <Button
-                      onClick={() => {
-                        reset(l.lang);
-                      }}
-                    >
-                      {t(`Reset to ${defaultLangLabel} ⚠️`)}
-                    </Button>
-                  ) : null}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-      <Button onClick={() => onClose()}>{t('Close')}</Button>
-    </DialogContent>
-  );
+        return {
+            key: lang,
+            cells: [
+                { 
+                    key: 'label', content: label + (isCurrent ? ' (default)' : ''),  width: 8,
+                    style: { textDecoration: isCurrent ? 'underline' : undefined } 
+                },
+                { key: 'state', content: <DraftSwitch nodeId={nodeId} lang={lang} /> },
+                { key: 'hasdata', content: hasData ? '✔️' : ' ' }
+            ],
+        }
+    }
+    return <Table compact basic='very' renderBodyRow={renderBodyRow} tableData={tableData} />;
 };
 
 export default I18nDialog;

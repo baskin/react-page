@@ -16,7 +16,7 @@ const ToggleInsert: React.FC<Props> = ({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 icon='add'
                 active={isInsertMode}
                 primary={isInsertMode}

@@ -1,28 +1,20 @@
-import IconButton from '@material-ui/core/IconButton';
-import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
-
 import React from 'react';
+import { Popup, Button } from 'semantic-ui-react';
 import {
-  useFocusCell,
-  useParentCellId,
-  useUiTranslator,
+    useFocusCell,
+    useParentCellId,
+    useUiTranslator,
 } from '../../core/components/hooks';
 
 export const SelectParentButton: React.FC<{
-  nodeId: string;
+    nodeId: string;
 }> = React.memo(({ nodeId }) => {
-  const parentCellId = useParentCellId(nodeId);
-  const { t } = useUiTranslator();
-  const focusParent = useFocusCell(parentCellId);
+    const parentCellId = useParentCellId(nodeId);
+    const { t } = useUiTranslator();
+    const focusParent = useFocusCell(parentCellId);
 
-  return parentCellId ? (
-    <IconButton
-      className="bottomToolbar__selectParentButton"
-      onClick={() => focusParent()}
-      color="default"
-      title={t('Select parent')}
-    >
-      <VerticalAlignTopIcon />
-    </IconButton>
-  ) : null;
+    return parentCellId ? (
+        <Popup inverted content={t('Select parent block')} trigger={
+            <Button icon='arrow circle up' onClick={() => focusParent()} />}
+        />) : null;
 });

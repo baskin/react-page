@@ -13,7 +13,7 @@ const ToggleEdit: React.FC<Props> = ({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 icon='edit'
                 active={isEditMode}
                 primary={isEditMode}

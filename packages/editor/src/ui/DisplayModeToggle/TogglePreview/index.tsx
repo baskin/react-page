@@ -16,7 +16,7 @@ const TogglePreview: React.FC<Props> = ({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 icon='laptop'
                 active={isPreviewMode}
                 primary={isPreviewMode}

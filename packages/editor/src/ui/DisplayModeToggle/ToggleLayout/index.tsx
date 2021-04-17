@@ -16,7 +16,7 @@ const ToggleLayout: React.FC<Props> = ({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 icon='block layout'
                 active={isLayoutMode}
                 primary={isLayoutMode}

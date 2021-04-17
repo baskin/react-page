@@ -16,7 +16,7 @@ const ToggleResize: React.FC<Props> = ({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 icon='expand arrows alternate'
                 active={isResizeMode}
                 primary={isResizeMode}

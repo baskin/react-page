@@ -82,6 +82,7 @@ export const PluginDrawer: React.FC = React.memo(() => {
     return (
         <TransitionablePortal
             closeOnDocumentClick={false}
+            closeOnEscape={false}
             transition={{ animation: 'fade right' }}
             className="react-page-plugin-drawer"
             open={isInsertMode}

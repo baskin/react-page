@@ -1,18 +1,15 @@
-import { IconButton, Tooltip } from '@material-ui/core';
-import Icon from '@material-ui/icons/FileCopy';
 import React from 'react';
+import { Button, Popup } from 'semantic-ui-react';
 import { useDuplicateCell, useUiTranslator } from '../../core/components/hooks';
 
 export const DuplicateButton: React.FC<{ nodeId: string }> = React.memo(
-  ({ nodeId }) => {
-    const duplicateCell = useDuplicateCell(nodeId);
-    const { t } = useUiTranslator();
-    return (
-      <Tooltip title={t('Duplicate Plugin')}>
-        <IconButton onClick={duplicateCell} aria-label="delete" color="default">
-          <Icon />
-        </IconButton>
-      </Tooltip>
-    );
-  }
+    ({ nodeId }) => {
+        const duplicateCell = useDuplicateCell(nodeId);
+        const { t } = useUiTranslator();
+        return (
+            <Popup inverted content={t('Duplicate component')} trigger={
+                <Button icon='copy' onClick={() => duplicateCell()} />}
+            />
+        );
+    }
 );

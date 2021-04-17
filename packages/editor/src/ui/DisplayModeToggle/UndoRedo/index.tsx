@@ -18,11 +18,12 @@ export const Undo: React.FC<Props> = React.memo(({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 active
-                icon='undo'
+                icon='undo alternate'
                 onClick={undo}
-                basic={!canUndo}
+                primary={canUndo}
+                disabled={!canUndo}
             />}
         />
     );
@@ -35,11 +36,12 @@ export const Redo: React.FC<Props> = React.memo(({ label }) => {
         <Popup inverted content={label} trigger={
             <Button
                 size='huge'
-                circular
+                // circular
                 active
-                icon='redo'
+                icon='redo alternate'
                 onClick={redo}
-                basic={!canRedo}
+                primary={canRedo}
+                disabled={!canRedo}
             />}
         />
     );

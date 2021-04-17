@@ -1,35 +1,27 @@
-import { IconButton, Tooltip } from '@material-ui/core';
-import Delete from '@material-ui/icons/Delete';
-
 import React from 'react';
+import { Popup, Button } from 'semantic-ui-react';
 import { useRemoveCell, useUiTranslator } from '../../core/components/hooks';
-import DraftSwitch from '../DraftSwitch';
 import { DuplicateButton } from '../DuplicateButton';
 import { I18nTools } from '../I18nTools';
 import { SelectParentButton } from '../SelectParentButton';
 import { BottomToolbarToolsProps } from './types';
+
 export { BottomToolbarToolsProps };
 export const BottomToolbarTools: React.FC<BottomToolbarToolsProps> = React.memo(
-  ({ nodeId }) => {
-    const { t } = useUiTranslator();
-    const removeCell = useRemoveCell(nodeId);
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <I18nTools nodeId={nodeId} />
-        <DraftSwitch nodeId={nodeId} />
-        <DuplicateButton nodeId={nodeId} />
-        <SelectParentButton nodeId={nodeId} />
+    ({ nodeId }) => {
+        const { t } = useUiTranslator();
+        const removeCell = useRemoveCell(nodeId);
+        return (
+            <Button.Group floated='right'>
+                <I18nTools nodeId={nodeId} />
+                {/* <DraftSwitch nodeId={nodeId} /> */}
+                <DuplicateButton nodeId={nodeId} />
+                <SelectParentButton nodeId={nodeId} />
 
-        <Tooltip title={t('Remove Plugin')}>
-          <IconButton
-            onClick={() => removeCell()}
-            aria-label="delete"
-            color="secondary"
-          >
-            <Delete />
-          </IconButton>
-        </Tooltip>
-      </div>
-    );
-  }
+                <Popup inverted content={t('Remove block')} trigger={
+                    <Button aria-label="delete" icon='trash' onClick={() => removeCell()} />}
+                />
+            </Button.Group>
+        );
+    }
 );
