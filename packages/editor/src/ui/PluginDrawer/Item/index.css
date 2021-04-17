@@ -1,9 +1,0 @@
-.react-page-plugin-drawer-item {
-  cursor: pointer;
-
-  z-index: 1;
-}
-.react-page-plugin-drawer-item:hover {
-  z-index: 2;
-  box-shadow: 0 0 20px #ccc;
-}

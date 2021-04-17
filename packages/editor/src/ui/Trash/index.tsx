@@ -1,7 +1,6 @@
-import Fab from '@material-ui/core/Fab';
-import Delete from '@material-ui/icons/Delete';
 import classNames from 'classnames';
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 import { useIsLayoutMode, useTrashDrop } from '../../core/components/hooks';
 
 export const Trash: React.FC = React.memo(() => {
@@ -14,9 +13,7 @@ export const Trash: React.FC = React.memo(() => {
         'react-page-controls-trash-active': isLayoutMode,
       })}
     >
-      <Fab color="secondary" disabled={!isHovering}>
-        <Delete />
-      </Fab>
+      <Button icon='trash' secondary disabled={!isHovering} />
     </div>
   );
 });

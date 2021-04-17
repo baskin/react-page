@@ -1,25 +1,29 @@
-import Devices from '@material-ui/icons/Devices';
 import React from 'react';
+import { Button, Popup } from 'semantic-ui-react';
 import {
-  useIsPreviewMode,
-  useSetPreviewMode,
+    useIsPreviewMode,
+    useSetPreviewMode,
 } from '../../../core/components/hooks';
-import Button from '../Button/index';
 
 type Props = {
-  label: string;
+    label: string;
 };
+
 const TogglePreview: React.FC<Props> = ({ label }) => {
-  const isPreviewMode = useIsPreviewMode();
-  const setIsPreviewMode = useSetPreviewMode();
-  return (
-    <Button
-      icon={<Devices />}
-      description={label}
-      active={isPreviewMode}
-      onClick={setIsPreviewMode}
-    />
-  );
+    const isPreviewMode = useIsPreviewMode();
+    const setIsPreviewMode = useSetPreviewMode();
+    return (
+        <Popup inverted content={label} trigger={
+            <Button
+                size='huge'
+                circular
+                icon='laptop'
+                active={isPreviewMode}
+                primary={isPreviewMode}
+                onClick={setIsPreviewMode}
+            />}
+        />
+    );
 };
 
 export default React.memo(TogglePreview);

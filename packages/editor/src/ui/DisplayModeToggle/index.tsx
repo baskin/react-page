@@ -5,7 +5,7 @@ import ToggleInsert from './ToggleInsert/index';
 import ToggleLayout from './ToggleLayout/index';
 import TogglePreview from './TogglePreview/index';
 import ToggleResize from './ToggleResize/index';
-import UndoRedo from './UndoRedo';
+import { Undo, Redo } from './UndoRedo';
 
 const getStickyNessstyle = (stickyness?: StickyNess): React.CSSProperties => {
   if (
@@ -44,7 +44,8 @@ export const DisplayModeToggle: React.SFC<{
   };
   const actions = [
     // eslint-disable-next-line react/jsx-key
-    { action: <UndoRedo labelRedo="redo" labelUndo="undo" /> },
+    { action: <Undo label="undo" /> },
+    { action: <Redo label="redo" /> },
     { action: <ToggleEdit label={t(defaultLabels.edit)} /> },
     { action: <ToggleInsert label={t(defaultLabels.insert)} /> },
     { action: <ToggleLayout label={t(defaultLabels.layout)} /> },
@@ -56,7 +57,7 @@ export const DisplayModeToggle: React.SFC<{
       className="react-page-controls-mode-toggle-control-group"
       style={{
         position: 'fixed',
-        zIndex: 10001,
+        zIndex: 1899,
         bottom: 0,
         right: 0,
         display: 'flex',

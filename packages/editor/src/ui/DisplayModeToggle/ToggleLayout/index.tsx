@@ -1,25 +1,29 @@
-import ViewQuilt from '@material-ui/icons/ViewQuilt';
 import React from 'react';
+import { Button, Popup } from 'semantic-ui-react';
 import {
-  useIsLayoutMode,
-  useSetLayoutMode,
+    useIsLayoutMode,
+    useSetLayoutMode,
 } from '../../../core/components/hooks';
-import Button from '../Button';
+
 type Props = {
-  label: string;
+    label: string;
 };
 
 const ToggleLayout: React.FC<Props> = ({ label }) => {
-  const isLayoutMode = useIsLayoutMode();
-  const setLayoutMode = useSetLayoutMode();
-  return (
-    <Button
-      icon={<ViewQuilt />}
-      description={label}
-      active={isLayoutMode}
-      onClick={setLayoutMode}
-    />
-  );
+    const isLayoutMode = useIsLayoutMode();
+    const setLayoutMode = useSetLayoutMode();
+    return (
+        <Popup inverted content={label} trigger={
+            <Button
+                size='huge'
+                circular
+                icon='block layout'
+                active={isLayoutMode}
+                primary={isLayoutMode}
+                onClick={setLayoutMode}
+            />}
+        />
+    );
 };
 
 export default React.memo(ToggleLayout);
