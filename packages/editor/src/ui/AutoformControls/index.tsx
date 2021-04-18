@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useMemo } from 'react';
 import type JSONSchemaBridge from 'uniforms-bridge-json-schema';
-import { useIsSmallScreen } from '../../core/components/hooks';
+// import { useIsSmallScreen } from '../../core/components/hooks';
 import lazyLoad from '../../core/helper/lazyLoad';
 
 import type {
@@ -50,7 +50,7 @@ export function AutoformControls<T extends Record<string, unknown> | unknown>({
     };
     onChange(newDefaultData);
   }, [bridge]);
-  const isSmall = useIsSmallScreen();
+  const isSmall = false; // useIsSmallScreen();
   return (
     <AutoForm model={data} autosave={true} schema={bridge} onSubmit={onChange}>
       <div

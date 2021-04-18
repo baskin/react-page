@@ -1,33 +1,33 @@
-import React from 'react';
+// import React from 'react';
 
-import type { Theme } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import {
-  ThemeProvider as MaterialUiThemeProvider,
-  StylesProvider,
-} from '@material-ui/styles';
-import { createGenerateClassName } from '@material-ui/styles';
-import darkTheme from './DarkTheme/index';
-import { themeOptions } from './themeOptions';
-export { darkTheme };
+// import type { Theme } from '@material-ui/core/styles';
+// import { createMuiTheme } from '@material-ui/core/styles';
+// import {
+//   ThemeProvider as MaterialUiThemeProvider,
+//   StylesProvider,
+// } from '@material-ui/styles';
+// import { createGenerateClassName } from '@material-ui/styles';
+// import darkTheme from './DarkTheme/index';
+// import { themeOptions } from './themeOptions';
+// export { darkTheme };
 
-const generateClassName = createGenerateClassName({
-  disableGlobal: true,
-  seed: 'reactPage',
-  productionPrefix: 'reactPage',
-});
-const theme = createMuiTheme(themeOptions);
+// const generateClassName = createGenerateClassName({
+//   disableGlobal: true,
+//   seed: 'reactPage',
+//   productionPrefix: 'reactPage',
+// });
+// const theme = createMuiTheme(themeOptions);
 
-export type ThemeProviderProps = {
-  theme?: Theme;
-};
+// export type ThemeProviderProps = {
+//   theme?: Theme;
+// };
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
-  return (
-    <StylesProvider injectFirst={true} generateClassName={generateClassName}>
-      <MaterialUiThemeProvider theme={props.theme || theme}>
-        {props.children}
-      </MaterialUiThemeProvider>
-    </StylesProvider>
-  );
-};
+// export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
+//   return (
+//     <StylesProvider injectFirst={true} generateClassName={generateClassName}>
+//       <MaterialUiThemeProvider theme={props.theme || theme}>
+//         {props.children}
+//       </MaterialUiThemeProvider>
+//     </StylesProvider>
+//   );
+// };

@@ -1,7 +1,6 @@
 import type { CellPluginComponentProps } from '@react-page/editor';
 
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Resizable } from 'react-resizable';
 
 import type { SpacerState } from '../types/state';

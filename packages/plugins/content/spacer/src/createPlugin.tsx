@@ -1,12 +1,9 @@
 import type { CellPlugin } from '@react-page/editor';
-import { lazyLoad } from '@react-page/editor';
-import React from 'react';
 import { defaultSettings } from './default/settings';
 
 import type { SpacerSettings } from './types/settings';
 import type { SpacerState } from './types/state';
 
-const AspectRatio = lazyLoad(() => import('@material-ui/icons/AspectRatio'));
 const createPlugin: (settings: SpacerSettings) => CellPlugin<SpacerState> = (
   settings
 ) => {
@@ -29,7 +26,7 @@ const createPlugin: (settings: SpacerSettings) => CellPlugin<SpacerState> = (
     },
     id: 'ory/editor/core/content/spacer',
     version: 1,
-    icon: <AspectRatio />,
+    icon: 'expand',
     title: mergedSettings.translations.pluginName,
     description: mergedSettings.translations.pluginDescription,
     allowClickInside: true,

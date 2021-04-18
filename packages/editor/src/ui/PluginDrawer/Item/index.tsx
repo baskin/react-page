@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, List, Popup } from 'semantic-ui-react';
+import { Icon, Image, List, Popup } from 'semantic-ui-react';
 import type { PluginDrawerLabels } from '..';
 import {
     useDisplayModeReferenceNodeId,
@@ -37,7 +37,10 @@ const Item: React.FC<ItemProps> = ({ plugin, insert }) => {
             trigger={
                 <List.Item onClick={insertIt}>
                     <Draggable insert={insert}>
-                        {plugin.icon ? plugin.icon : 
+                        {plugin.icon ? (
+                                typeof plugin.icon === 'string' ? 
+                                    <Icon circular name={plugin.icon as any} /> : plugin.icon
+                            ) : 
                             <Image avatar src={`https://ui-avatars.com/api/?bold=true&name=${title}`} />
                         }
                         <List.Content>

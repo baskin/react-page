@@ -1,12 +1,8 @@
 import type { CellPlugin } from '@react-page/editor';
-import { lazyLoad } from '@react-page/editor';
-import React from 'react';
 import { defaultSettings } from './default/settings';
 import DividerHtmlRenderer from './Renderer/DividerHtmlRenderer';
 
 import type { DividerSettings } from './types/settings';
-
-const Remove = lazyLoad(() => import('@material-ui/icons/Remove'));
 
 const createPlugin: (settings: DividerSettings) => CellPlugin = (settings) => {
   const mergedSettings = { ...defaultSettings, ...settings };
@@ -14,7 +10,7 @@ const createPlugin: (settings: DividerSettings) => CellPlugin = (settings) => {
     Renderer: settings.Renderer || DividerHtmlRenderer,
     id: 'ory/editor/core/content/divider',
     version: 1,
-    icon: <Remove />,
+    icon: 'minus',
     title: mergedSettings.translations.pluginName,
     description: mergedSettings.translations.pluginDescription,
   };

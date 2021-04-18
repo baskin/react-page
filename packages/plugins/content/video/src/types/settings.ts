@@ -1,4 +1,3 @@
-import { VideoControlsProps } from './controls';
 import type { VideoHtmlRendererProps } from './renderer';
 import type { Translations } from './translations';
 

@@ -1,8 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import ErrorIcon from '@material-ui/icons/Error';
+import { Button, Icon, Progress } from 'semantic-ui-react';
 import type { ImageLoaded, ImageUploadProps, ImageUploadState } from './types';
 import { defaultTranslations } from './defaultTranslations';
 import type { TranslatorFunction } from '../../core/components/hooks';
@@ -23,7 +20,7 @@ class ImageUpload extends React.Component<
   ImageUploadState
 > {
   static defaultProps = {
-    icon: <CloudUploadIcon style={{ marginLeft: '8px' }} />,
+    icon: 'upload',
     allowedExtensions: ['jpg', 'jpeg', 'png'],
     maxFileSize: 5242880,
     translations: defaultTranslations,
@@ -131,20 +128,20 @@ class ImageUpload extends React.Component<
 
   renderChildren = () => {
     if (this.state.isUploading) {
-      return <CircularProgress value={this.state.progress} size={19} />;
+      return <Progress percent={this.state.progress} />;
     }
     if (this.state.hasError) {
       return (
         <React.Fragment>
           {this.state.errorText}
-          <ErrorIcon style={{ marginLeft: '8px' }} />
+          <Icon name='warning circle' />
         </React.Fragment>
       );
     }
     return (
       <React.Fragment>
         {this.props.translations.buttonContent}
-        {this.props.icon}
+        <Icon name={this.props.icon as any} />
       </React.Fragment>
     );
   };
@@ -154,8 +151,8 @@ class ImageUpload extends React.Component<
       <React.Fragment>
         <Button
           disabled={this.state.isUploading}
-          variant="contained"
-          color={this.state.hasError ? 'secondary' : 'primary'}
+          primary={!this.state.hasError}
+          secondary={this.state.hasError}
           onClick={this.handleFileUploadClick}
           style={this.props.style}
           size="small"

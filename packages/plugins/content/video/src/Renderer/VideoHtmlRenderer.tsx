@@ -1,10 +1,10 @@
 import React from 'react';
-import PlayArrow from '@material-ui/icons/PlayArrow';
-import { iconStyle } from '../common/styles';
-
+import { Icon } from 'semantic-ui-react';
 import { lazyLoad } from '@react-page/editor';
 
+import { iconStyle } from '../common/styles';
 import type { VideoHtmlRendererProps } from '../types/renderer';
+
 
 // react player is big, better lazy load it.
 const ReactPlayer = lazyLoad(() => import('react-player'));
@@ -37,7 +37,7 @@ const Display: React.FC<VideoHtmlRendererProps> = ({ data, readOnly }) =>
     </div>
   ) : (
     <div className="react-page-plugins-content-video-placeholder">
-      <PlayArrow style={iconStyle} />
+      <Icon name='play circle outline' style={iconStyle} />
     </div>
   );
 

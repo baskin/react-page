@@ -58,7 +58,7 @@ export const DisplayModeToggle: React.SFC<{
       className="react-page-controls-mode-toggle-control-group"
       style={{
         position: 'fixed',
-        zIndex: 1899,
+        zIndex: 899,
         bottom: 0,
         right: 0,
         display: 'flex',

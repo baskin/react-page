@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Header } from 'semantic-ui-react';
+import { Grid, Image, Header, Icon } from 'semantic-ui-react';
 import { usePluginOfCell, useUiTranslator } from '../../core/components/hooks';
 import { BottomToolbarTools } from './Tools';
 
@@ -15,12 +15,13 @@ export const BottomToolbarMainBar: React.FC<BottomToolbarMainBarProps> = React.m
         return (
             <Grid container={true}>
                 <Grid.Column>
-                    {icon ? icon :
+                    {icon ? (typeof icon === 'string' ? 
+                            <Icon circular name={icon as any} /> : icon) :
                         <Image avatar src={`https://ui-avatars.com/api/?bold=true&name=${title}`} />
                     }
                 </Grid.Column>
-                <Grid.Column>
-                    <Header as='h3'>{t(title)}</Header>
+                <Grid.Column width='6'>
+                    {t(title)}   
                 </Grid.Column>
                 {React.Children.map(actionsLeft, (action, index) => (
                     <Grid.Column key={index}>

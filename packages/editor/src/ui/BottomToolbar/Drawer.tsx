@@ -23,17 +23,6 @@ export const BottomToolbarDrawer: React.FC<BottomToolbarDrawerProps> = ({
   children,
   style = {},
 }) => {
-  const divider = (
-    <Divider
-      style={{
-        marginLeft: -24,
-        marginRight: -24,
-        marginTop: 12,
-        marginBottom: 12,
-      }}
-    />
-  );
-
   const theChildren = React.Children.toArray(children).filter(Boolean);
 //   const isSmall = useIsSmallScreen();
 
@@ -48,7 +37,7 @@ export const BottomToolbarDrawer: React.FC<BottomToolbarDrawerProps> = ({
         {theChildren.map((child, index) => (
             <Fragment key={index}>
                {child}
-               {index < theChildren.length - 1 ? divider : null}
+               {index < theChildren.length - 1 ? <Divider /> : null}
             </Fragment>
         ))}
         </Segment>

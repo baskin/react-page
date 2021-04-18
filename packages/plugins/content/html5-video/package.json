@@ -20,10 +20,7 @@
   },
   "peerDependencies": {
     "react": ">= 16.14",
-    "react-dom": ">= 16.14",
-    "@material-ui/core": "*",
-    "@material-ui/icons": "*",
-    "@material-ui/styles": "*"
+    "react-dom": ">= 16.14"
   },
   "dependencies": {
     "@react-page/editor": "0.0.0"
