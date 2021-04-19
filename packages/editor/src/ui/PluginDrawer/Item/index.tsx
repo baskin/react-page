@@ -23,12 +23,13 @@ const Item: React.FC<ItemProps> = ({ plugin, insert }) => {
         return null;
     }
 
-    const referenceNodeId = useDisplayModeReferenceNodeId();
-    const insertNew = useInsertNew();
-    const insertIt = React.useCallback(
-        () => insertNew(insert, referenceNodeId ?? null),
-        [insertNew, referenceNodeId, insert]
-    );
+  const referenceNodeId = useDisplayModeReferenceNodeId();
+  const insertNew = useInsertNew(referenceNodeId);
+  const insertIt = React.useCallback(() => insertNew(insert), [
+    insertNew,
+    referenceNodeId,
+    insert,
+  ]);
 
     return (
         <Popup inverted

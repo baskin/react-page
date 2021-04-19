@@ -1,10 +1,11 @@
 import React from 'react';
 import { Input, List, Header, TransitionablePortal, Label } from 'semantic-ui-react';
 import {
-    useIsInsertMode,
-    useSetEditMode,
-    useAllCellPlugins,
-    useUiTranslator,
+  useIsInsertMode,
+  useUiTranslator,
+  useDisplayModeReferenceNodeId,
+  useAllCellPluginsForNode,
+  useSetEditMode
 } from '../../core/components/hooks';
 import type { CellPlugin } from '../../core/types';
 import Item from './Item/index';
@@ -20,34 +21,35 @@ const getPluginTitle = (plugin: CellPlugin) =>
     (plugin.title || plugin.text) ?? '';
 
 export const PluginDrawer: React.FC = React.memo(() => {
-    const defaultLabels: PluginDrawerLabels = {
-        noPluginFoundContent: 'No blocks found',
-        searchPlaceholder: 'Search for blocks',
-        insertPlugin: 'Add blocks to page',
-        dragMe: 'Drag me!',
-    };
+  const defaultLabels: PluginDrawerLabels = {
+    noPluginFoundContent: 'No blocks found',
+    searchPlaceholder: 'Search for blocks',
+    insertPlugin: 'Add blocks to page',
+    dragMe: 'Drag me!',
+  };
+  const nodeId = useDisplayModeReferenceNodeId();
+  const plugins = useAllCellPluginsForNode(nodeId);
 
-    const plugins = useAllCellPlugins();
-    const { t } = useUiTranslator();
-    const [searchText, setSearchText] = React.useState<string>('');
-    const searchFilter = React.useCallback(
-        (plugin: CellPlugin) => {
-            const id = plugin.id;
-            const title = getPluginTitle(plugin);
-            return (
-                plugin &&
-                id &&
-                !plugin.hideInMenu &&
-                (id.toLowerCase().startsWith(searchText?.toLowerCase()) ||
-                    (plugin.description &&
-                        plugin.description
-                            .toLowerCase()
-                            .startsWith(searchText?.toLowerCase())) ||
-                    (title && title.toLowerCase().startsWith(searchText?.toLowerCase())))
-            );
-        },
-        [searchText]
-    );
+  const { t } = useUiTranslator();
+  const [searchText, setSearchText] = React.useState<string>('');
+  const searchFilter = React.useCallback(
+    (plugin: CellPlugin) => {
+      const id = plugin.id;
+      const title = getPluginTitle(plugin);
+      return (
+        plugin &&
+        id &&
+        !plugin.hideInMenu &&
+        (id.toLowerCase().startsWith(searchText?.toLowerCase()) ||
+          (plugin.description &&
+            plugin.description
+              .toLowerCase()
+              .startsWith(searchText?.toLowerCase())) ||
+          (title && title.toLowerCase().startsWith(searchText?.toLowerCase())))
+      );
+    },
+    [searchText]
+  );
 
     const onSearch = React.useCallback(
         (e: React.ChangeEvent) => {
