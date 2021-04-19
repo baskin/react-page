@@ -30,14 +30,14 @@ export const BottomToolbarDrawer: React.FC<BottomToolbarDrawerProps> = ({
     <TransitionablePortal open={open} closeOnDocumentClick={false} closeOnEscape={false}>
         <Segment raised style={{ ...style,
             left: 0, right: 0, margin: 'auto', position: 'fixed', 
-            // make this work for mobile screen
-            minWidth: '50vw', maxWidth: 'min(1280px, calc(100vw - 250px))',
+            // TODO make this work for mobile screen
+            minWidth: '50vw', maxWidth: 'min(1280px, calc(100vw - 300px))',
             bottom: '0%', zIndex: 1000
         }}>
         {theChildren.map((child, index) => (
             <Fragment key={index}>
                {child}
-               {index < theChildren.length - 1 ? <Divider /> : null}
+               {index < theChildren.length - 1 && index > 0 ? <Divider /> : null}
             </Fragment>
         ))}
         </Segment>

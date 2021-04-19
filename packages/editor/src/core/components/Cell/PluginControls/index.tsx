@@ -12,13 +12,7 @@ const ControlsList: React.FC<{
   componentProps: CellPluginComponentProps<unknown>;
 }> = React.memo(({ controls, componentProps }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-      }}
-    >
-      <Tab menu={{ fluid: false, vertical: true, tabular: false }}
+      <Tab menu={{ fluid: true, vertical: true, tabular: false, pointing: true }}
         panes={controls.map(t => ({ 
             key: t.title,
             menuItem: t.title,
@@ -28,7 +22,6 @@ const ControlsList: React.FC<{
         )}
       >
       </Tab>
-    </div>
   );
 });
 
@@ -47,7 +40,7 @@ const Controls: React.FC<{
   } else if (controls?.type === 'autoform') {
     pluginControls = <AutoformControls {...componentProps} {...controls} />;
   }
-  return <div style={{ overflow: 'visible', flex: 1 }}>{pluginControls}</div>;
+  return pluginControls
 });
 
 const PluginControls: React.FC<{
@@ -57,11 +50,10 @@ const PluginControls: React.FC<{
   return (
     <div
       style={{
-        maxHeight: '50vh',
+        maxHeight: '60vh', // TODO overflow?
         // if it has tabs, stretch to avoid jumping tabs
         width: Array.isArray(controls) ? '100vw' : undefined,
         maxWidth: '100%',
-        display: 'flex',
       }}
     >
       <Controls controls={controls} componentProps={componentProps} />
