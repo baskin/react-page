@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import { useUiTranslator } from '../../core/components/hooks';
+import { useOptions, useUiTranslator } from '../../core/components/hooks';
 import ToggleEdit from './ToggleEdit/index';
 import ToggleInsert from './ToggleInsert/index';
 import ToggleLayout from './ToggleLayout/index';
@@ -43,6 +43,7 @@ export const DisplayModeToggle: React.SFC<{
     resize: 'Resize blocks',
     preview: 'Preview page',
   };
+  const addons = useOptions().components?.AdditionalButtonsSidebar || [];
   const actions = [
     // eslint-disable-next-line react/jsx-key
     { action: <Undo label="undo" /> },
@@ -52,6 +53,7 @@ export const DisplayModeToggle: React.SFC<{
     { action: <ToggleLayout label={t(defaultLabels.layout)} /> },
     { action: <ToggleResize label={t(defaultLabels.resize)} /> },
     { action: <TogglePreview label={t(defaultLabels.preview)} /> },
+    ...addons.map(a => ({ action: a }))
   ];
   return (
     <div
