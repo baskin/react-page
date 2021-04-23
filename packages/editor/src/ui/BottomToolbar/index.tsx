@@ -1,5 +1,6 @@
 import React from 'react';
-import { Label } from 'semantic-ui-react';
+import { Container, Label } from 'semantic-ui-react';
+import { useBlurCell } from '../../core/components/hooks';
 // import { darkTheme, ThemeProvider } from '../ThemeProvider';
 import { BottomToolbarDrawer } from './Drawer';
 import { BottomToolbarMainBar } from './NodeTools';
@@ -23,8 +24,11 @@ export const BottomToolbar: React.FC<BottomToolbarProps> = React.memo(
         style,
         children,
     }) => {
-        const [scale, setScale] = React.useState(1);
+        // const [scale, setScale] = React.useState(1);
         const [collapsed, setCollapsed] = React.useState(false);
+        const toggleCollapse = () => setCollapsed(!collapsed);
+        const blurCell = useBlurCell();
+        const closeToolbar = () => blurCell(nodeId);
 
         return (
             //   <ThemeProvider theme={theme ? theme : dark ? darkTheme : null}>
@@ -32,15 +36,17 @@ export const BottomToolbar: React.FC<BottomToolbarProps> = React.memo(
                 className={className}
                 open={open}
                 anchor={anchor}
-                scale={scale}
+                // scale={scale}
                 dark={dark}
                 style={style}
             >
-                <Label corner='right' icon={collapsed ? 'window maximize' : 'window minimize'}
-                    onClick={() => setCollapsed(!collapsed)}
+                <Label corner='left' icon={collapsed ? 'window maximize' : 'window minimize'}
+                    onClick={toggleCollapse}
                 />
+                <Label corner='right' icon='close' onClick={closeToolbar} />
                 {children}
                 {collapsed ? null : pluginControls}
+                <div onClick={toggleCollapse}>
                 <BottomToolbarMainBar
                     nodeId={nodeId}
                     actionsLeft={[
@@ -52,6 +58,7 @@ export const BottomToolbar: React.FC<BottomToolbarProps> = React.memo(
                         ...React.Children.toArray(actionsLeft),
                     ]}
                 />
+                </div>
             </BottomToolbarDrawer>
             //   </ThemeProvider>
         );

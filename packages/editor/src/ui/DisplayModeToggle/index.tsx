@@ -77,7 +77,7 @@ export const DisplayModeToggle: React.SFC<{
             key={index}
             className="react-page-controls-mode-toggle-control"
             style={{
-              animationDelay: (actions.length - index) * 150 + 'ms',
+              animationDelay: (actions.length - index) * 50 + 'ms',
             }}
           >
             {action}

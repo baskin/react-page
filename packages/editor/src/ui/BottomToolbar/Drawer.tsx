@@ -27,7 +27,8 @@ export const BottomToolbarDrawer: React.FC<BottomToolbarDrawerProps> = ({
 //   const isSmall = useIsSmallScreen();
 
   return (
-    <TransitionablePortal open={open} closeOnDocumentClick={false} closeOnEscape={false}>
+    <TransitionablePortal transition={{ duration: 300 }} 
+        open={open} closeOnDocumentClick={false} closeOnEscape={false}>
         <Segment raised style={{ ...style,
             left: 0, right: 0, margin: 'auto', position: 'fixed', 
             // TODO make this work for mobile screen
@@ -37,7 +38,8 @@ export const BottomToolbarDrawer: React.FC<BottomToolbarDrawerProps> = ({
         {theChildren.map((child, index) => (
             <Fragment key={index}>
                {child}
-               {index < theChildren.length - 1 && index > 0 ? <Divider /> : null}
+               {/* skip first 2 children that are left & right labels */}
+               {index < theChildren.length - 1 && index > 1 ? <Divider /> : null}
             </Fragment>
         ))}
         </Segment>

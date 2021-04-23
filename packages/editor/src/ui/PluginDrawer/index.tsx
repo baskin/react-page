@@ -85,13 +85,14 @@ export const PluginDrawer: React.FC = React.memo(() => {
         <TransitionablePortal
             closeOnDocumentClick={false}
             closeOnEscape={false}
-            transition={{ animation: 'fade right' }}
+            transition={{ animation: 'fade right', duration: 300 }}
             className="react-page-plugin-drawer"
             open={isInsertMode}
         >
             <List selection divided relaxed style={{
-                top: 0, left: 0, width: '320px', position: 'absolute',
+                top: 0, left: 0, width: '320px', position: 'fixed',
                 height: '100%', borderRightStyle: 'groove', overflowX: 'scroll',
+                display: 'flex', maxHeight: '100%',
                 // z-index of tooltip popup is 1900
                 margin: 0, padding: '1rem', zIndex: '1899', background: 'white'
             }}

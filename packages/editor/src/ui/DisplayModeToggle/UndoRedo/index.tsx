@@ -22,7 +22,7 @@ export const Undo: React.FC<Props> = React.memo(({ label }) => {
                 active
                 icon='undo alternate'
                 onClick={undo}
-                primary={canUndo}
+                // primary={canUndo}
                 disabled={!canUndo}
             />}
         />
@@ -40,7 +40,7 @@ export const Redo: React.FC<Props> = React.memo(({ label }) => {
                 active
                 icon='redo alternate'
                 onClick={redo}
-                primary={canRedo}
+                // primary={canRedo}
                 disabled={!canRedo}
             />}
         />

@@ -15,7 +15,7 @@ export const Trash: React.FC = React.memo(() => {
         >
             <Button icon='trash' secondary disabled={!isHovering} />
             <Popup inverted content='Drag block to trash' trigger={
-                <sub style={{ color: 'grey', textAlign: 'center' }}>Trash</sub>}
+                <span style={{ color: 'grey', textAlign: 'center' }}>Trash</span>}
             />
         </div>
     );
