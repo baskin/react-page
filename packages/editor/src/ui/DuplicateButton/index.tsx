@@ -7,7 +7,7 @@ export const DuplicateButton: React.FC<{ nodeId: string }> = React.memo(
         const duplicateCell = useDuplicateCell(nodeId);
         const { t } = useUiTranslator();
         return (
-            <Popup inverted content={t('Duplicate component')} trigger={
+            <Popup inverted content={t('Duplicate block')} trigger={
                 <Button icon='copy' onClick={() => duplicateCell()} />}
             />
         );

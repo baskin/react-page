@@ -12,7 +12,8 @@ const ControlsList: React.FC<{
   componentProps: CellPluginComponentProps<unknown>;
 }> = React.memo(({ controls, componentProps }) => {
   return (
-      <Tab menu={{ fluid: true, vertical: true, tabular: false, pointing: true }}
+      <Tab grid={{ paneWidth: 13, tabWidth: 3 }}
+        menu={{ fluid: true, vertical: true, tabular: false, pointing: true }}
         panes={controls.map(t => ({ 
             key: t.title,
             menuItem: t.title,
@@ -50,8 +51,9 @@ const PluginControls: React.FC<{
   return (
     <div
       style={{
-        maxHeight: '60vh', // TODO overflow?
+        maxHeight: '75vh', // TODO overflow?
         // if it has tabs, stretch to avoid jumping tabs
+        overflow: 'hidden auto',
         width: Array.isArray(controls) ? '100vw' : undefined,
         maxWidth: '100%',
       }}

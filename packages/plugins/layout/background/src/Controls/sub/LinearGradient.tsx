@@ -1,11 +1,13 @@
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+// import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
 import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import Typography from '@material-ui/core/Typography';
+// import DeleteIcon from '@material-ui/icons/Delete';
+import { SpaOutlined } from '@material-ui/icons';
 import type { RGBColor } from '@react-page/editor';
 import { ColorPicker } from '@react-page/editor';
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 import type { BackgroundProps } from '../../types/component';
 
 export interface LinearGradientComponentProps {
@@ -185,10 +187,10 @@ class LinearGradientComponent extends React.Component<
               {/* Must use this maxWidth else when the gradient opacity slider is 100%, it goes beyond 100% and an ugly scrollbar shows */}
               <div style={{ display: 'flex', maxWidth: '96%' }}>
                 <div style={{ flex: 1 }}>
-                  <Typography variant="body1" id="linear-gradient-degree-label">
+                  <span id="linear-gradient-degree-label">
                     {this.props.translations.gradientRotation} ({deg}
                     {this.props.translations.degrees})
-                  </Typography>
+                  </span>
                   <Slider
                     aria-labelledby="linear-gradient-degree-label"
                     value={deg}
@@ -201,14 +203,13 @@ class LinearGradientComponent extends React.Component<
                 </div>
 
                 <div style={{ flex: 1, marginLeft: 16 }}>
-                  <Typography
-                    variant="body1"
+                  <span
                     id="linear-gradient-opacity-label"
                   >
                     {this.props.translations.gradientOpacity} (
                     {(opacity * 100).toFixed(0)}
                     %)
-                  </Typography>
+                  </span>
                   <Slider
                     aria-labelledby="linear-gradient-opacity-label"
                     value={opacity}
@@ -245,30 +246,25 @@ class LinearGradientComponent extends React.Component<
                           cpIndex
                         )}
                       />
-                      <IconButton
+                      <Button icon='delete'
                         aria-label="Delete"
                         onClick={this.removeColor(i, cpIndex)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
+                      />
                     </React.Fragment>
                   );
                 })}
 
                 {/* Render the add new gradient button */}
                 <Button
-                  variant="contained"
                   onClick={this.addColor(i)}
                   style={{ marginLeft: '8px' }}
                 >
                   {this.props.translations.addColor}
                 </Button>
-                <IconButton
+                <Button icon='delete'
                   aria-label="Delete"
                   onClick={this.removeGradient(i)}
-                >
-                  <DeleteIcon />
-                </IconButton>
+                />
               </div>
             </div>
           );

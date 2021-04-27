@@ -1,8 +1,8 @@
 @import 'Button/index.css';
 
-.react-page-controls-mode-toggle-clearfix {
+/* .react-page-controls-mode-toggle-clearfix {
   clear: both;
-}
+} */
 
 @keyframes fadeIn {
   0% {
@@ -23,5 +23,4 @@
   z-index: 1;
   animation: fadeIn 0.8s forwards;
   opacity: 0;
-
 }

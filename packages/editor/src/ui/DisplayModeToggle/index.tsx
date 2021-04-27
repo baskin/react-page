@@ -46,8 +46,8 @@ export const DisplayModeToggle: React.SFC<{
   const addons = useOptions().components?.AdditionalButtonsSidebar || [];
   const actions = [
     // eslint-disable-next-line react/jsx-key
-    { action: <Undo label="undo" /> },
-    { action: <Redo label="redo" /> },
+    { action: <Undo label="Undo" /> },
+    { action: <Redo label="Redo" /> },
     { action: <ToggleEdit label={t(defaultLabels.edit)} /> },
     { action: <ToggleInsert label={t(defaultLabels.insert)} /> },
     { action: <ToggleLayout label={t(defaultLabels.layout)} /> },
@@ -81,7 +81,7 @@ export const DisplayModeToggle: React.SFC<{
             }}
           >
             {action}
-            <div className="react-page-controls-mode-toggle-clearfix" />
+            {/* <div className="react-page-controls-mode-toggle-clearfix" /> */}
           </div>
         ))} />
         </div>
