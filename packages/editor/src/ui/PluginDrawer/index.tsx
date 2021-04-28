@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, List, Header, TransitionablePortal, Label } from 'semantic-ui-react';
+import { Input, List, Header, TransitionablePortal, Label, Divider } from 'semantic-ui-react';
 import {
   useIsInsertMode,
   useUiTranslator,
@@ -20,26 +20,33 @@ export interface PluginDrawerLabels {
 const getPluginTitle = (plugin: CellPlugin) =>
     (plugin.title || plugin.text) ?? '';
 
+const TAGS = ['All', 'Basic', 'Layout', 'Composite'];
+
 export const PluginDrawer: React.FC = React.memo(() => {
   const defaultLabels: PluginDrawerLabels = {
     noPluginFoundContent: 'No blocks found',
     searchPlaceholder: 'Search for blocks',
-    insertPlugin: 'Add blocks to page',
+    insertPlugin: 'Add blocks',
     dragMe: 'Drag me!',
   };
   const nodeId = useDisplayModeReferenceNodeId();
   const plugins = useAllCellPluginsForNode(nodeId);
 
   const { t } = useUiTranslator();
+  
   const [searchText, setSearchText] = React.useState<string>('');
+  const [searchTag, setSearchTag] = React.useState<string>('All');
+
   const searchFilter = React.useCallback(
     (plugin: CellPlugin) => {
       const id = plugin.id;
       const title = getPluginTitle(plugin);
+      const tags: string[] = (plugin as any).tags || [];
       return (
         plugin &&
         id &&
         !plugin.hideInMenu &&
+        (searchTag === 'All' || tags.includes(searchTag)) &&
         (id.toLowerCase().startsWith(searchText?.toLowerCase()) ||
           (plugin.description &&
             plugin.description
@@ -48,7 +55,7 @@ export const PluginDrawer: React.FC = React.memo(() => {
           (title && title.toLowerCase().startsWith(searchText?.toLowerCase())))
       );
     },
-    [searchText]
+    [searchText, searchTag]
   );
 
     const onSearch = React.useCallback(
@@ -89,14 +96,14 @@ export const PluginDrawer: React.FC = React.memo(() => {
             className="react-page-plugin-drawer"
             open={isInsertMode}
         >
-            <List selection divided relaxed style={{
+            <div style={{
                 top: 0, left: 0, width: '320px', position: 'fixed',
                 height: '100%', borderRightStyle: 'groove', overflowX: 'scroll',
                 display: 'flex', maxHeight: '100%',
                 // z-index of tooltip popup is 1900
-                margin: 0, padding: '1rem', zIndex: '1899', background: 'white'
-            }}
-            >
+                margin: 0, padding: '1rem', zIndex: 1899, background: 'white'
+            }}>
+            <List relaxed='very'>
                 <Label corner='right' icon='close' onClick={setEditMode} />
                 <List.Item>
                     <Header as='h2' content={t(defaultLabels.insertPlugin)} />
@@ -107,6 +114,17 @@ export const PluginDrawer: React.FC = React.memo(() => {
                         onChange={onSearch}
                     />
                 </List.Item>
+                <List.Item>
+                    <Label.Group>
+                        {TAGS.map(tag => 
+                            <Label as='a' basic={searchTag !== tag} key={tag} content={tag} 
+                                onClick={() => setSearchTag(tag)} />
+                        )}
+                    </Label.Group>
+                </List.Item>
+                <Divider />
+                </List>
+                <List animated selection divided relaxed='very'>
                 {filteredPlugins.length === 0 && (
                     <List.Item>
                         <Header as='h3' content={t(defaultLabels.noPluginFoundContent)} />
@@ -129,6 +147,7 @@ export const PluginDrawer: React.FC = React.memo(() => {
                     </>
                 )}
             </List>
+            </div>
         </TransitionablePortal>
     );
 });

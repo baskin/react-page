@@ -40,9 +40,9 @@ const Item: React.FC<ItemProps> = ({ plugin, insert }) => {
                     <Draggable insert={insert}>
                         {plugin.icon ? (
                                 typeof plugin.icon === 'string' ? 
-                                    <Icon circular name={plugin.icon as any} /> : plugin.icon
+                                    <Icon size='large' style={{ float: 'left' }} circular name={plugin.icon as any} /> : plugin.icon
                             ) : 
-                            <Image avatar src={`https://ui-avatars.com/api/?bold=true&name=${title}`} />
+                            <Image size='mini' floated='left' avatar src={`https://ui-avatars.com/api/?bold=true&name=${title}`} />
                         }
                         <List.Content>
                             <List.Header>{t(title)}</List.Header>
