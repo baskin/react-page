@@ -20,7 +20,7 @@
   .react-page-cell-insert-new {
     cursor: cell;
     flex: 1;
-    min-height: 100px;
+    height: 100px;
 
     transition: all ease 0.4s;
     display: flex;

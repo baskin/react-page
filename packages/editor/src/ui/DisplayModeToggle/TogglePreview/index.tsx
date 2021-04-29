@@ -5,22 +5,19 @@ import {
     useSetPreviewMode,
 } from '../../../core/components/hooks';
 
-type Props = {
-    label: string;
-};
 
-const TogglePreview: React.FC<Props> = ({ label }) => {
+const TogglePreview: React.FC = (props: any) => {
+    const { label, ...buttonProps }  = props;
     const isPreviewMode = useIsPreviewMode();
     const setIsPreviewMode = useSetPreviewMode();
     return (
         <Popup inverted content={label} trigger={
             <Button
-                size='huge'
-                // circular
                 icon='laptop'
                 active={isPreviewMode}
                 primary={isPreviewMode}
                 onClick={setIsPreviewMode}
+                {...buttonProps}
             />}
         />
     );
