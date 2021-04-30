@@ -21,7 +21,6 @@
     cursor: cell;
     flex: 1;
     height: 100px;
-
     transition: all ease 0.4s;
     display: flex;
     justify-content: center;

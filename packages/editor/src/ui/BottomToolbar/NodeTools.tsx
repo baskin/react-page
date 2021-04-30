@@ -13,7 +13,7 @@ export const BottomToolbarMainBar: React.FC<BottomToolbarMainBarProps> = React.m
         const { title, icon } = usePluginOfCell(nodeId) ?? {};
         const { t } = useUiTranslator();
         return (
-            <Grid container={true}>
+            <Grid verticalAlign='middle' container>
                 <Grid.Column>
                     {icon ? (typeof icon === 'string' ? 
                             <Icon circular name={icon as any} /> : icon) :
@@ -21,7 +21,7 @@ export const BottomToolbarMainBar: React.FC<BottomToolbarMainBarProps> = React.m
                     }
                 </Grid.Column>
                 <Grid.Column width='6'>
-                    {t(title)}   
+                    <Header as='h4' content={t(title)} />
                 </Grid.Column>
                 {React.Children.map(actionsLeft, (action, index) => (
                     <Grid.Column key={index}>

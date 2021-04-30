@@ -69,9 +69,9 @@ export const DisplayModeToggle: React.SFC<{
                     <Button.Group vertical size='huge'
                         style={{ margin: '1rem' }}
                         buttons={[
-                            ...Object.entries(actions).map(([name, Component], index) => (
+                            ...Object.entries(actions).map(([name, Component]) => (
                                 <Component
-                                    key={index}
+                                    key={name}
                                     label={t(defaultLabels[name])}
                                     className="react-page-controls-mode-toggle-control"
                                 />

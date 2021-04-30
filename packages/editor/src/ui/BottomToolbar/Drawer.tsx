@@ -29,7 +29,7 @@ export const BottomToolbarDrawer: React.FC<BottomToolbarDrawerProps> = ({
   return (
     <TransitionablePortal transition={{ duration: 300 }} 
         open={open} closeOnDocumentClick={false} closeOnEscape={false}>
-        <Segment raised style={{ ...style,
+        <Segment secondary raised style={{ ...style,
             left: 0, right: 0, margin: 'auto', position: 'fixed', 
             // TODO make this work for mobile screen
             minWidth: '50vw', maxWidth: 'min(1280px, calc(100vw - 300px))',
