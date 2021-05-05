@@ -20,7 +20,7 @@ export interface PluginDrawerLabels {
 const getPluginTitle = (plugin: CellPlugin) =>
     (plugin.title || plugin.text) ?? '';
 
-const TAGS = ['All', 'Basic', 'Layout', 'Composite'];
+const TAGS = ['All', 'Basic', 'Composite', 'Section'];
 
 export const PluginDrawer: React.FC = React.memo(() => {
   const defaultLabels: PluginDrawerLabels = {

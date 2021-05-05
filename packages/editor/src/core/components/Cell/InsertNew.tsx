@@ -6,6 +6,7 @@ import {
   useInsertNew,
   useIsLayoutMode,
   useIsPreviewMode,
+  usePluginOfCell,
   useSetDisplayReferenceNodeId,
   useSetInsertMode,
 } from '../hooks';
@@ -14,6 +15,7 @@ const InsertNew: React.FC<{ parentCellId?: string }> = ({ parentCellId }) => {
   const setInsertMode = useSetInsertMode();
 
   const insertNew = useInsertNew(parentCellId);
+  const { title } = usePluginOfCell(parentCellId) ?? {};
 
   const isPreviewMode = useIsPreviewMode();
   const isLayoutMode = useIsLayoutMode();
@@ -63,7 +65,9 @@ const InsertNew: React.FC<{ parentCellId?: string }> = ({ parentCellId }) => {
         setReferenceNodeId(parentCellId);
         setInsertMode();
       }}
-    />
+    >
+    {title}
+    </div>
   );
 };
 

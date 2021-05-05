@@ -21,32 +21,39 @@
     cursor: cell;
     flex: 1;
     height: 100px;
-    transition: all ease 0.4s;
+    /* transition: all ease 0.4s; */
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
+    /* border: 1px solid rgba(0, 0, 0, 0); */
     z-index: 1;
     position: relative;
-    border-radius: 5%;
+    border-radius: 2%;
     margin-top: 2rem;
+    font-size: 1.25rem;
+    color: var(--faintBlack);
   }
 
   .react-page-cell-insert-new:after {
     content: '+';
+    position: absolute;
     font-size: 52px;
     font-family: monospace;
     line-height: 52px;
-    background-color: var(--minBlack);
-    color: white;
+    background-color: var(--faintBlack);
+    color: var(--lightWhite);
     width: 52px;
     text-align: center;
     border-radius: 50%;
+  }
+  .react-page-cell-insert-new:hover:after {
+    color: var(--faintWhite);
   }
 
   .react-page-cell-insert-new:hover,
   .react-page-cell-insert-new.hover {
     background: var(--minBlack);
-    border: 1px solid var(--lightWhite);
+    border: 1px dashed var(--lightBlack);
+    color: var(--lightBlack);
   }
 }
