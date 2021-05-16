@@ -11,7 +11,12 @@ import {
   useSetInsertMode,
 } from '../hooks';
 
-const InsertNew: React.FC<{ parentCellId?: string }> = ({ parentCellId }) => {
+export interface InsertNewProps {
+  parentCellId?: string;
+  childrenIds?: string[];
+}
+
+const InsertNew: React.FC<InsertNewProps> = ({ parentCellId }) => {
   const setInsertMode = useSetInsertMode();
 
   const insertNew = useInsertNew(parentCellId);
