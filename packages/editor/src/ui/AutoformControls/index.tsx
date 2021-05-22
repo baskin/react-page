@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useMemo } from 'react';
 import type JSONSchemaBridge from 'uniforms-bridge-json-schema';
-import type { AutoFieldProps, AutoFieldsProps } from 'uniforms-material';
+import type { AutoFieldsProps } from 'uniforms-semantic';
 // import { useIsSmallScreen } from '../../core/components/hooks';
 import lazyLoad from '../../core/helper/lazyLoad';
 
@@ -16,8 +16,8 @@ export const AutoForm = lazyLoad(() =>
 );
 export const AutoField = lazyLoad(() =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  import('uniforms-semantic').then((c) => c.AutoField as any)
-) as React.FC<AutoFieldProps>;
+  import('uniforms-semantic').then((c) => c.AutoField)
+) as React.FC<any>;
 
 export const AutoFields = lazyLoad(() =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
