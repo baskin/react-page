@@ -16,7 +16,7 @@ export const AutoForm = lazyLoad(() =>
 );
 export const AutoField = lazyLoad(() =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  import('uniforms-material').then((c) => c.AutoField as any)
+  import('uniforms-semantic').then((c) => c.AutoField as any)
 ) as React.FC<AutoFieldProps>;
 
 export const AutoFields = lazyLoad(() =>
