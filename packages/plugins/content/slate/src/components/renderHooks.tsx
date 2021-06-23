@@ -31,15 +31,19 @@ type Injections = {
   useSelected: () => boolean;
   useFocused: () => boolean;
 };
+const STATIC_INJECTIONS = {
+  useFocused: () => false,
+  useSelected: () => false,
+};
 export const useRenderElement = (
   {
     plugins,
     defaultPluginType,
-    injections,
+    injections = STATIC_INJECTIONS,
   }: {
     plugins: SlatePlugin[];
     defaultPluginType: string;
-    injections: Injections;
+    injections?: Injections;
   },
   deps: DependencyList
 ) => {
@@ -96,7 +100,12 @@ export const useRenderElement = (
 };
 
 export const useRenderLeave = (
-  { plugins, injections }: { plugins: SlatePlugin[]; injections: Injections },
+  {
+    plugins,
+    injections = STATIC_INJECTIONS,
+    readOnly = false,
+  }: { plugins: SlatePlugin[]; injections?: Injections; readOnly?: boolean },
+
   deps: DependencyList
 ) => {
   const markPlugins = useComponentMarkPlugins({ plugins }, deps);
@@ -107,8 +116,10 @@ export const useRenderLeave = (
       attributes,
       children,
     }: RenderLeafProps) => {
+      // we reduce number of dom elements by avoiding having another span. Its required in edit mode though for slate to work
+      const Wrapper = readOnly ? React.Fragment : 'span';
       return (
-        <span {...attributes}>
+        <Wrapper {...attributes}>
           {Object.keys(leaveTypes).reduce((el, type) => {
             const matchingPlugin = markPlugins.find(
               (plugin) => plugin.type === type
@@ -145,7 +156,7 @@ export const useRenderLeave = (
             }
             return el;
           }, children)}
-        </span>
+        </Wrapper>
       );
     },
     deps
