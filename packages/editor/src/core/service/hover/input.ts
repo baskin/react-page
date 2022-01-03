@@ -11,7 +11,8 @@ const computeCurrentDropPosition = (
   drag: PartialCell,
   monitor: DropTargetMonitor,
   element: HTMLElement,
-  options: Options
+  options: Options,
+  matrixName: string
 ) => {
   const mousePosition = monitor.getClientOffset();
 
@@ -29,6 +30,7 @@ const computeCurrentDropPosition = (
   computeHover(drag, hover, actions, {
     room,
     mouse,
+    matrixName,
     options,
   });
 };
@@ -39,7 +41,8 @@ export const computeAndDispatchInsert = (
   monitor: DropTargetMonitor,
   element: HTMLElement,
   actions: HoverInsertActions,
-  options: Options
+  options: Options,
+  matrixName = '10x10'
 ) => {
   return computeCurrentDropPosition(
     actions,
@@ -47,7 +50,8 @@ export const computeAndDispatchInsert = (
     drag,
     monitor,
     element,
-    options
+    options,
+    matrixName
   );
 };
 
@@ -57,6 +61,15 @@ export const computeAndDispatchHover = (
   monitor: DropTargetMonitor,
   element: HTMLElement,
   actions: HoverInsertActions,
-  options: Options
+  options: Options,
+  matrixName = '10x10'
 ) =>
-  computeCurrentDropPosition(actions, hover, drag, monitor, element, options);
+  computeCurrentDropPosition(
+    actions,
+    hover,
+    drag,
+    monitor,
+    element,
+    options,
+    matrixName
+  );

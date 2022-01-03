@@ -1,19 +1,19 @@
 import debounce from 'lodash.debounce';
-import type { CSSProperties } from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { HoverTarget } from 'src/core/service/hover/computeHover';
+import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import type { PositionEnum } from '../../const';
 import { useSelector } from '../../reduxConnect';
+
 import { findNodeInState } from '../../selector/editable';
+
 import type { Cell, CellDrag, Node, Row } from '../../types/node';
 import { isRow } from '../../types/node';
 import deepEquals from '../../utils/deepEquals';
-import { getAvailablePlugins } from '../../utils/getAvailablePlugins';
 import { getCellData } from '../../utils/getCellData';
-import { getCellInnerDivStylingProps } from '../../utils/getCellStylingProps';
+import { getCellStyle } from '../../utils/getCellStyle';
 import { getDropLevels } from '../../utils/getDropLevels';
 import { useUpdateCellData } from './nodeActions';
 import { useLang, useOptions } from './options';
+import { getAvailablePlugins } from '../../utils/getAvailablePlugins';
 
 type NodeSelector<T> = (node: Node, ancestors: Node[]) => T;
 
@@ -64,9 +64,6 @@ export const useCellProps = <T>(
   nodeId: string,
   selector: CellSelector<T>
 ): T => {
-  if (!nodeId) {
-    return null;
-  }
   return useNodeProps(nodeId, (node, ancestors) =>
     !isRow(node) ? selector(node, ancestors) : selector(null, ancestors)
   );
@@ -134,23 +131,12 @@ export const useParentCellId = (nodeId: string) => {
 };
 
 /**
- * returns a cell as a HoverTarget that is suiteable to be passed to the drop-logic
  *
- * @param nodeId a nodeId
- * @returns a HoverTarget
+ * @deprecated currently not used
  */
-export const useNodeAsHoverTarget = (nodeId: string): HoverTarget => {
+export const useNodeDropLevels = (nodeId: string) => {
   return useNodeProps(nodeId, (node, ancestors) =>
-    node
-      ? {
-          id: node.id,
-          ancestorIds: ancestors.map((a) => a.id),
-          hasInlineNeighbour: !isRow(node) ? node.hasInlineNeighbour : null,
-          inline: !isRow(node) ? node.inline : null,
-          levels: getDropLevels(node, ancestors),
-          pluginId: !isRow(node) ? node.plugin?.id : null,
-        }
-      : null
+    getDropLevels(node, ancestors)
   );
 };
 
@@ -297,27 +283,21 @@ export const useCellData = (nodeId: string, lang?: string) => {
 };
 
 /**
- *returns style and classname of a cell's inner div
+ *returns the style of a cell if the plugin of th cell configures a custom style function
  * @param nodeId a cell id
  * @param lang a language key (optionally)
  * @returns the data object in the given language of the given cell
  */
-export const useCellInnerDivStylingProps = (
-  nodeId: string,
-  lang?: string
-): {
-  className: string;
-  style: CSSProperties;
-} => {
+export const useCellStyle = (nodeId: string, lang?: string) => {
   const plugin = usePluginOfCell(nodeId);
 
   const currentLang = useLang();
   const theLang = lang ?? currentLang;
 
-  return useCellProps(nodeId, (c) => {
-    const data = getCellData(c, theLang);
-    return getCellInnerDivStylingProps(c, plugin, data);
-  });
+  return useCellProps(
+    nodeId,
+    (c) => getCellStyle(plugin, getCellData(c, theLang)) ?? {}
+  );
 };
 
 /**

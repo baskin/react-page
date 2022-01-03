@@ -14,11 +14,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
-"@react-page/slate-react-presentation@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@react-page/slate-react-presentation/-/slate-react-presentation-0.1.1.tgz#80821e4445b6efac735e8c78fc2f1d9105b64723"
-  integrity sha512-q4ubyqjA1ETsGljvCQJFIn97q+19ZHegvHQJg+HVxcSvBWm77j74lf0mC1JvlOrEgPN+0qw+B9qEKM7c/mH+6Q==
-
 "@types/esrever@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@types/esrever/-/esrever-0.2.0.tgz#96404a2284b2c7527f08a1e957f8a31705f9880f"
@@ -210,10 +205,10 @@ slate-hyperscript@^0.62.0:
   dependencies:
     is-plain-object "^3.0.0"
 
-slate-react@^0.65.2:
-  version "0.65.2"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.65.2.tgz#71ca66f7b9c6d4ffaffb291494b85ce0398c1530"
-  integrity sha512-EweSDd7zehKsirLzwr6iPRArVMr8RgSm3DPboeUEdCBTawdQddXHt1niUmXtb+XzefCqGdOybKkkiXGAOKel8Q==
+slate-react@^0.65.0:
+  version "0.65.0"
+  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.65.0.tgz#58e19f42f1bda726626c5b75a677bb783fc13853"
+  integrity sha512-eEDv3OavlSu+dwWtwSuQ/ourKhazgz4NU3OOp0xjTxxcYECV9swC3Eps633l5CktiU16+XIpNgxP9f9yupgIpg==
   dependencies:
     "@types/is-hotkey" "^0.1.1"
     "@types/lodash" "^4.14.149"

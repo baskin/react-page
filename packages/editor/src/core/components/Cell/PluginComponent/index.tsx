@@ -27,7 +27,7 @@ const PluginComponent: React.FC<{ nodeId: string; hasChildren: boolean }> = ({
   const isEditMode = useIsEditMode();
 
   const [data, onChange] = useDebouncedCellData(nodeId);
-  const pluginId = useCellProps(nodeId, (c) => c.plugin?.id);
+  const pluginId = useCellProps(nodeId, (c) => c?.plugin?.id);
   const plugin = usePluginOfCell(nodeId);
   const focused = useIsFocused(nodeId);
   const hasInlineNeighbour = useCellProps(nodeId, (c) => c.hasInlineNeighbour);

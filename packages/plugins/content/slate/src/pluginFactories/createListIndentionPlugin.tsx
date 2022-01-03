@@ -1,4 +1,10 @@
 import type { SlatePlugin } from '../types/SlatePlugin';
+import {
+  decreaseListIndention,
+  getActiveListType,
+  getPreviousListItem,
+  increaseListIndention,
+} from './utils/listUtils';
 
 type Definition = {
   iconIncrease: JSX.Element;
@@ -17,22 +23,19 @@ const ceateSlatePlugin = (def: Definition): SlatePlugin[] => {
       addHoverButton: false,
       icon: def.iconIncrease,
       label: def.labelIncrease,
-      customAdd: async (editor) => {
-        const { increaseListIndention } = await import('./utils/listUtils');
+      customAdd: (editor) => {
         increaseListIndention(editor, {
           allListTypes: def.allListTypes,
           listItemType: def.listItemType,
         });
       },
-      customRemove: async (editor) => {
-        const { decreaseListIndention } = await import('./utils/listUtils');
+      customRemove: (editor) => {
         decreaseListIndention(editor, {
           allListTypes: def.allListTypes,
           listItemType: def.listItemType,
         });
       },
-      isDisabled: async (editor) => {
-        const { getPreviousListItem } = await import('./utils/listUtils');
+      isDisabled: (editor) => {
         const previous = getPreviousListItem(editor, def.listItemType);
         return !previous;
       },
@@ -43,22 +46,19 @@ const ceateSlatePlugin = (def: Definition): SlatePlugin[] => {
       addHoverButton: false,
       icon: def.iconDecrease,
       label: def.labelDecrease,
-      customAdd: async (editor) => {
-        const { decreaseListIndention } = await import('./utils/listUtils');
+      customAdd: (editor) => {
         decreaseListIndention(editor, {
           allListTypes: def.allListTypes,
           listItemType: def.listItemType,
         });
       },
-      customRemove: async (editor) => {
-        const { increaseListIndention } = await import('./utils/listUtils');
+      customRemove: (editor) => {
         increaseListIndention(editor, {
           allListTypes: def.allListTypes,
           listItemType: def.listItemType,
         });
       },
-      isDisabled: async (editor) => {
-        const { getActiveListType } = await import('./utils/listUtils');
+      isDisabled: (editor) => {
         return !getActiveListType(editor, def.allListTypes);
       },
     },
