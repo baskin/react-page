@@ -57,6 +57,10 @@ const Editor: React.FC<EditorProps> = ({
   cellSpacing,
   ...rest
 }) => {
+//   require('react-dom');
+//   (window as any).React2 = require('react');
+//   console.log('XXXXXXXXXXXXX:', (window as any).React1 === (window as any).React2);
+
   // mount the component always in readonly, to avoid problems with SSR
   const [renderReadOnly, setRenderReadOnly] = useState(true);
   useEffect(() => {
